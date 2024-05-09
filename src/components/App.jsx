@@ -8,6 +8,10 @@ import QueueingState2 from "./QueueingState2";
 import UpdatingObjectsState2 from "./UpdatingObjectsState2";
 import UpdatingArraysState2 from "./UpdatingArraysState2";
 import UpdatingArraysState3 from "./UpdatingArraysState3";
+import StateStructure1 from "./StateStructure1";
+import StateStructure2 from "./StateStructure2";
+import StateStructure3 from "./StateStructure3";
+import StateStructure4 from "./StateStructure4";
 
 export default function App() {
   return (
@@ -30,6 +34,14 @@ export default function App() {
       <UpdatingArraysState2 />
       {/* state 内の配列の更新（ミューテーションを行わないように修正） */}
       <UpdatingArraysState3 />
+      {/* state 構造の選択（更新されないコンポーネントの修正）*/}
+      <StateStructure1 />
+      {/* state 構造の選択（壊れた荷物リストの修正 ）*/}
+      <StateStructure2 />
+      {/* state 構造の選択（選択項目が消える問題を修正 ）*/}
+      <StateStructure3 />
+      {/* state 構造の選択（複数選択を実装）*/}
+      <StateStructure4 />
     </div>
   );
 }

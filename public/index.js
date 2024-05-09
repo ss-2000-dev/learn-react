@@ -1084,7 +1084,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState9(initialState) {
+          function useState13(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1096,7 +1096,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect(create, deps) {
+          function useEffect2(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1878,7 +1878,7 @@
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect;
+          exports.useEffect = useEffect2;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -1886,7 +1886,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState9;
+          exports.useState = useState13;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2382,9 +2382,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React18 = require_react();
+          var React23 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React18.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React23.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3989,7 +3989,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React18.Children.forEach(props.children, function(child) {
+                  React23.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12436,7 +12436,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React18.Component().refs;
+          var emptyRefsObject = new React23.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23508,11 +23508,11 @@
   });
 
   // src/index.jsx
-  var import_react25 = __toESM(require_react());
+  var import_react34 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/components/App.jsx
-  var import_react24 = __toESM(require_react());
+  var import_react33 = __toESM(require_react());
 
   // src/components/ConditinalRendering1.jsx
   var import_react3 = __toESM(require_react());
@@ -23984,15 +23984,135 @@
     )));
   }
 
-  // src/components/App.jsx
+  // src/components/StateStructure1.jsx
+  var import_react26 = __toESM(require_react());
+  var import_react27 = __toESM(require_react());
+
+  // src/components/Clock.jsx
+  var import_react24 = __toESM(require_react());
+  var import_react25 = __toESM(require_react());
+  function Clock(props) {
+    return /* @__PURE__ */ import_react24.default.createElement("h1", { style: { color: props.color } }, props.time);
+  }
+
+  // src/components/StateStructure1.jsx
+  function useTime() {
+    const [time, setTime] = (0, import_react27.useState)(() => /* @__PURE__ */ new Date());
+    (0, import_react27.useEffect)(() => {
+      const id = setInterval(() => {
+        setTime(/* @__PURE__ */ new Date());
+      }, 1e3);
+      return () => clearInterval(id);
+    }, []);
+    return time;
+  }
   function App2() {
-    return /* @__PURE__ */ import_react24.default.createElement("div", { className: "container" }, /* @__PURE__ */ import_react24.default.createElement(PackingList, null), /* @__PURE__ */ import_react24.default.createElement(DrinkList, null), /* @__PURE__ */ import_react24.default.createElement(RecipeList, null), /* @__PURE__ */ import_react24.default.createElement(ColorSwitch, null), /* @__PURE__ */ import_react24.default.createElement(RequestTracker, null), /* @__PURE__ */ import_react24.default.createElement(App, null), /* @__PURE__ */ import_react24.default.createElement(Canvas, null), /* @__PURE__ */ import_react24.default.createElement(ShoppingCart, null), /* @__PURE__ */ import_react24.default.createElement(TaskApp, null));
+    const time = useTime();
+    const [color, setColor] = (0, import_react27.useState)("lightcoral");
+    return /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, /* @__PURE__ */ import_react26.default.createElement(Title, null, "state \u69CB\u9020\u306E\u9078\u629E\uFF08\u66F4\u65B0\u3055\u308C\u306A\u3044\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8\u306E\u4FEE\u6B63 ) "), /* @__PURE__ */ import_react26.default.createElement(ItemBox, null, /* @__PURE__ */ import_react26.default.createElement("p", null, "Pick a color:", " ", /* @__PURE__ */ import_react26.default.createElement("select", { value: color, onChange: (e) => setColor(e.target.value) }, /* @__PURE__ */ import_react26.default.createElement("option", { value: "lightcoral" }, "lightcoral"), /* @__PURE__ */ import_react26.default.createElement("option", { value: "midnightblue" }, "midnightblue"), /* @__PURE__ */ import_react26.default.createElement("option", { value: "rebeccapurple" }, "rebeccapurple"))), /* @__PURE__ */ import_react26.default.createElement(Clock, { color, time: time.toLocaleTimeString() })));
+  }
+
+  // src/components/StateStructure2.jsx
+  var import_react31 = __toESM(require_react());
+  var import_react32 = __toESM(require_react());
+
+  // src/components/AddItem.jsx
+  var import_react28 = __toESM(require_react());
+  var import_react29 = __toESM(require_react());
+  function AddItem({ onAddItem }) {
+    const [title, setTitle] = (0, import_react29.useState)("");
+    return /* @__PURE__ */ import_react28.default.createElement(import_react28.default.Fragment, null, /* @__PURE__ */ import_react28.default.createElement(
+      "input",
+      {
+        placeholder: "Add item",
+        value: title,
+        onChange: (e) => setTitle(e.target.value)
+      }
+    ), /* @__PURE__ */ import_react28.default.createElement(
+      "button",
+      {
+        onClick: () => {
+          setTitle("");
+          onAddItem(title);
+        }
+      },
+      "Add"
+    ));
+  }
+
+  // src/components/PackingList.jsx
+  var import_react30 = __toESM(require_react());
+  function PackingList2({ items, onChangeItem, onDeleteItem }) {
+    return /* @__PURE__ */ import_react30.default.createElement("ul", null, items.map((item) => /* @__PURE__ */ import_react30.default.createElement("li", { key: item.id }, /* @__PURE__ */ import_react30.default.createElement("label", null, /* @__PURE__ */ import_react30.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        checked: item.packed,
+        onChange: (e) => {
+          onChangeItem({
+            ...item,
+            packed: e.target.checked
+          });
+        }
+      }
+    ), " ", item.title), /* @__PURE__ */ import_react30.default.createElement("button", { onClick: () => onDeleteItem(item.id) }, "Delete"))));
+  }
+
+  // src/components/StateStructure2.jsx
+  var nextId2 = 3;
+  var initialItems = [
+    { id: 0, title: "Warm socks", packed: true },
+    { id: 1, title: "Travel journal", packed: false },
+    { id: 2, title: "Watercolors", packed: false }
+  ];
+  function TravelPlan() {
+    const [items, setItems] = (0, import_react32.useState)(initialItems);
+    const total = items.length;
+    const packed = items.filter((item) => item.packed).length;
+    function handleAddItem(title) {
+      setTotal(total + 1);
+      setItems([
+        ...items,
+        {
+          id: nextId2++,
+          title,
+          packed: false
+        }
+      ]);
+    }
+    function handleChangeItem(nextItem) {
+      setItems(
+        items.map((item) => {
+          if (item.id === nextItem.id) {
+            return nextItem;
+          } else {
+            return item;
+          }
+        })
+      );
+    }
+    function handleDeleteItem(itemId) {
+      setItems(items.filter((item) => item.id !== itemId));
+    }
+    return /* @__PURE__ */ import_react31.default.createElement(import_react31.default.Fragment, null, /* @__PURE__ */ import_react31.default.createElement(Title, null, "state \u69CB\u9020\u306E\u9078\u629E\uFF08\u58CA\u308C\u305F\u8377\u7269\u30EA\u30B9\u30C8\u306E\u4FEE\u6B63 ) "), /* @__PURE__ */ import_react31.default.createElement(ItemBox, null, /* @__PURE__ */ import_react31.default.createElement(AddItem, { onAddItem: handleAddItem }), /* @__PURE__ */ import_react31.default.createElement(
+      PackingList2,
+      {
+        items,
+        onChangeItem: handleChangeItem,
+        onDeleteItem: handleDeleteItem
+      }
+    ), /* @__PURE__ */ import_react31.default.createElement("hr", null), /* @__PURE__ */ import_react31.default.createElement("b", null, packed, " out of ", total, " packed!")));
+  }
+
+  // src/components/App.jsx
+  function App3() {
+    return /* @__PURE__ */ import_react33.default.createElement("div", { className: "container" }, /* @__PURE__ */ import_react33.default.createElement(PackingList, null), /* @__PURE__ */ import_react33.default.createElement(DrinkList, null), /* @__PURE__ */ import_react33.default.createElement(RecipeList, null), /* @__PURE__ */ import_react33.default.createElement(ColorSwitch, null), /* @__PURE__ */ import_react33.default.createElement(RequestTracker, null), /* @__PURE__ */ import_react33.default.createElement(App, null), /* @__PURE__ */ import_react33.default.createElement(Canvas, null), /* @__PURE__ */ import_react33.default.createElement(ShoppingCart, null), /* @__PURE__ */ import_react33.default.createElement(TaskApp, null), /* @__PURE__ */ import_react33.default.createElement(App2, null), /* @__PURE__ */ import_react33.default.createElement(TravelPlan, null));
   }
 
   // src/index.jsx
   var root = (0, import_client.createRoot)(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ import_react25.default.createElement(import_react25.StrictMode, null, /* @__PURE__ */ import_react25.default.createElement(App2, null))
+    /* @__PURE__ */ import_react34.default.createElement(import_react34.StrictMode, null, /* @__PURE__ */ import_react34.default.createElement(App3, null))
   );
 })();
 /*! Bundled license information:
