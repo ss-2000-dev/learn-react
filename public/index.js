@@ -1084,7 +1084,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState13(initialState) {
+          function useState15(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1886,7 +1886,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState13;
+          exports.useState = useState15;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2382,9 +2382,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React23 = require_react();
+          var React27 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React23.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React27.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3989,7 +3989,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React23.Children.forEach(props.children, function(child) {
+                  React27.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12436,7 +12436,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React23.Component().refs;
+          var emptyRefsObject = new React27.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23508,11 +23508,11 @@
   });
 
   // src/index.jsx
-  var import_react34 = __toESM(require_react());
+  var import_react40 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/components/App.jsx
-  var import_react33 = __toESM(require_react());
+  var import_react39 = __toESM(require_react());
 
   // src/components/ConditinalRendering1.jsx
   var import_react3 = __toESM(require_react());
@@ -23584,6 +23584,40 @@
       id: "hummus",
       name: "Hummus",
       ingredients: ["chickpeas", "olive oil", "garlic cloves", "lemon", "tahini"]
+    }
+  ];
+  var initialLetters = [
+    {
+      id: 0,
+      subject: "Ready for adventure?",
+      isStarred: true
+    },
+    {
+      id: 1,
+      subject: "Time to check in!",
+      isStarred: false
+    },
+    {
+      id: 2,
+      subject: "Festival Begins in Just SEVEN Days!",
+      isStarred: false
+    }
+  ];
+  var letters = [
+    {
+      id: 0,
+      subject: "Ready for adventure?",
+      isStarred: true
+    },
+    {
+      id: 1,
+      subject: "Time to check in!",
+      isStarred: false
+    },
+    {
+      id: 2,
+      subject: "Festival Begins in Just SEVEN Days!",
+      isStarred: false
     }
   ];
 
@@ -24104,15 +24138,118 @@
     ), /* @__PURE__ */ import_react31.default.createElement("hr", null), /* @__PURE__ */ import_react31.default.createElement("b", null, packed, " out of ", total, " packed!")));
   }
 
+  // src/components/StateStructure3.jsx
+  var import_react34 = __toESM(require_react());
+  var import_react35 = __toESM(require_react());
+
+  // src/components/Letter.jsx
+  var import_react33 = __toESM(require_react());
+  function Letter({
+    letter,
+    isHighlighted,
+    onHover,
+    onToggleStar
+  }) {
+    return /* @__PURE__ */ import_react33.default.createElement(
+      "li",
+      {
+        className: isHighlighted ? "highlighted" : "",
+        onFocus: () => {
+          onHover(letter.id);
+        },
+        onPointerMove: () => {
+          onHover(letter.id);
+        }
+      },
+      /* @__PURE__ */ import_react33.default.createElement(
+        "button",
+        {
+          onClick: () => {
+            onToggleStar(letter.id);
+          }
+        },
+        letter.isStarred ? "Unstar" : "Star"
+      ),
+      letter.subject
+    );
+  }
+
+  // src/components/StateStructure3.jsx
+  function MailClient() {
+    const [letters2, setLetters] = (0, import_react35.useState)(initialLetters);
+    const [highlightedId, setHighlightedId] = (0, import_react35.useState)(null);
+    function handleHover(letterId) {
+      setHighlightedId(letterId);
+    }
+    function handleStar(starredId) {
+      setLetters(
+        letters2.map((letter) => {
+          if (letter.id === starredId) {
+            return {
+              ...letter,
+              isStarred: !letter.isStarred
+            };
+          } else {
+            return letter;
+          }
+        })
+      );
+    }
+    return /* @__PURE__ */ import_react34.default.createElement(import_react34.default.Fragment, null, /* @__PURE__ */ import_react34.default.createElement(Title, null, "state \u69CB\u9020\u306E\u9078\u629E\uFF08\u9078\u629E\u9805\u76EE\u304C\u6D88\u3048\u308B\u554F\u984C\u3092\u4FEE\u6B63 ) "), /* @__PURE__ */ import_react34.default.createElement(ItemBox, null, /* @__PURE__ */ import_react34.default.createElement("h2", null, "Inbox"), /* @__PURE__ */ import_react34.default.createElement("ul", null, letters2.map((letter) => /* @__PURE__ */ import_react34.default.createElement(
+      Letter,
+      {
+        key: letter.id,
+        letter,
+        isHighlighted: letter.id === highlightedId,
+        onHover: handleHover,
+        onToggleStar: handleStar
+      }
+    )))));
+  }
+
+  // src/components/StateStructure4.jsx
+  var import_react37 = __toESM(require_react());
+  var import_react38 = __toESM(require_react());
+
+  // src/components/Letter2.jsx
+  var import_react36 = __toESM(require_react());
+  function Letter2({ letter, onToggle }) {
+    return /* @__PURE__ */ import_react36.default.createElement("li", null, /* @__PURE__ */ import_react36.default.createElement("label", null, /* @__PURE__ */ import_react36.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        onChange: () => {
+          onToggle(letter.id);
+        }
+      }
+    ), letter.subject));
+  }
+
+  // src/components/StateStructure4.jsx
+  function MailClient2() {
+    const [selectedId, setSelectedId] = (0, import_react38.useState)(null);
+    function handleToggle(toggledId) {
+      setSelectedId(toggledId);
+    }
+    return /* @__PURE__ */ import_react37.default.createElement(import_react37.default.Fragment, null, /* @__PURE__ */ import_react37.default.createElement(Title, null, "state \u69CB\u9020\u306E\u9078\u629E\uFF08\u8907\u6570\u9078\u629E\u3092\u5B9F\u88C5\uFF09"), /* @__PURE__ */ import_react37.default.createElement(ItemBox, null, /* @__PURE__ */ import_react37.default.createElement("h2", null, "Inbox"), /* @__PURE__ */ import_react37.default.createElement("ul", null, letters.map((letter) => /* @__PURE__ */ import_react37.default.createElement(
+      Letter2,
+      {
+        key: letter.id,
+        letter,
+        onToggle: handleToggle
+      }
+    )), /* @__PURE__ */ import_react37.default.createElement("hr", null), /* @__PURE__ */ import_react37.default.createElement("p", null), /* @__PURE__ */ import_react37.default.createElement("p", null, /* @__PURE__ */ import_react37.default.createElement("b", null, "You selected ", selectedId, " id letters")))));
+  }
+
   // src/components/App.jsx
   function App3() {
-    return /* @__PURE__ */ import_react33.default.createElement("div", { className: "container" }, /* @__PURE__ */ import_react33.default.createElement(PackingList, null), /* @__PURE__ */ import_react33.default.createElement(DrinkList, null), /* @__PURE__ */ import_react33.default.createElement(RecipeList, null), /* @__PURE__ */ import_react33.default.createElement(ColorSwitch, null), /* @__PURE__ */ import_react33.default.createElement(RequestTracker, null), /* @__PURE__ */ import_react33.default.createElement(App, null), /* @__PURE__ */ import_react33.default.createElement(Canvas, null), /* @__PURE__ */ import_react33.default.createElement(ShoppingCart, null), /* @__PURE__ */ import_react33.default.createElement(TaskApp, null), /* @__PURE__ */ import_react33.default.createElement(App2, null), /* @__PURE__ */ import_react33.default.createElement(TravelPlan, null));
+    return /* @__PURE__ */ import_react39.default.createElement("div", { className: "container" }, /* @__PURE__ */ import_react39.default.createElement(PackingList, null), /* @__PURE__ */ import_react39.default.createElement(DrinkList, null), /* @__PURE__ */ import_react39.default.createElement(RecipeList, null), /* @__PURE__ */ import_react39.default.createElement(ColorSwitch, null), /* @__PURE__ */ import_react39.default.createElement(RequestTracker, null), /* @__PURE__ */ import_react39.default.createElement(App, null), /* @__PURE__ */ import_react39.default.createElement(Canvas, null), /* @__PURE__ */ import_react39.default.createElement(ShoppingCart, null), /* @__PURE__ */ import_react39.default.createElement(TaskApp, null), /* @__PURE__ */ import_react39.default.createElement(App2, null), /* @__PURE__ */ import_react39.default.createElement(TravelPlan, null), /* @__PURE__ */ import_react39.default.createElement(MailClient, null), /* @__PURE__ */ import_react39.default.createElement(MailClient2, null));
   }
 
   // src/index.jsx
   var root = (0, import_client.createRoot)(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ import_react34.default.createElement(import_react34.StrictMode, null, /* @__PURE__ */ import_react34.default.createElement(App3, null))
+    /* @__PURE__ */ import_react40.default.createElement(import_react40.StrictMode, null, /* @__PURE__ */ import_react40.default.createElement(App3, null))
   );
 })();
 /*! Bundled license information:

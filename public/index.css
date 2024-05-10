@@ -14,3 +14,21 @@
   margin: 60px 0px 10px 30px;
   padding: 0px 30px;
 }
+
+/* state 構造の選択（選択項目が消える問題を修正 ） */
+li {
+  border-radius: 5px;
+}
+.highlighted {
+  background: #d2eaff;
+}
+
+/* state 構造の選択（複数選択を実装 ） */
+label {
+  width: 100%;
+  padding: 5px;
+  display: inline-block;
+}
+.selected {
+  background: #d2eaff;
+}
