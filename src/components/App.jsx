@@ -12,6 +12,8 @@ import StateStructure1 from "./StateStructure1";
 import StateStructure2 from "./StateStructure2";
 import StateStructure3 from "./StateStructure3";
 import StateStructure4 from "./StateStructure4";
+import SharingState1 from "./SharingState1";
+import SharingState2 from "./SharingState2";
 
 export default function App() {
   return (
@@ -42,6 +44,10 @@ export default function App() {
       <StateStructure3 />
       {/* state 構造の選択（複数選択を実装）*/}
       <StateStructure4 />
+      {/* コンポーネント間で state を共有する（入力欄の同期）*/}
+      <SharingState1 />
+      {/* コンポーネント間で state を共有する（リストのフィルタリング）*/}
+      <SharingState2 />
     </div>
   );
 }

@@ -1084,7 +1084,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState15(initialState) {
+          function useState17(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1886,7 +1886,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState15;
+          exports.useState = useState17;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2382,9 +2382,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React27 = require_react();
+          var React29 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React27.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React29.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3989,7 +3989,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React27.Children.forEach(props.children, function(child) {
+                  React29.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12436,7 +12436,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React27.Component().refs;
+          var emptyRefsObject = new React29.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23508,11 +23508,11 @@
   });
 
   // src/index.jsx
-  var import_react40 = __toESM(require_react());
+  var import_react44 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/components/App.jsx
-  var import_react39 = __toESM(require_react());
+  var import_react43 = __toESM(require_react());
 
   // src/components/ConditinalRendering1.jsx
   var import_react3 = __toESM(require_react());
@@ -23618,6 +23618,39 @@
       id: 2,
       subject: "Festival Begins in Just SEVEN Days!",
       isStarred: false
+    }
+  ];
+  function filterItems(items, query) {
+    query = query.toLowerCase();
+    return items.filter(
+      (item) => item.name.split(" ").some((word) => word.toLowerCase().startsWith(query))
+    );
+  }
+  var foods = [
+    {
+      id: 0,
+      name: "Sushi",
+      description: "Sushi is a traditional Japanese dish of prepared vinegared rice"
+    },
+    {
+      id: 1,
+      name: "Dal",
+      description: "The most common way of preparing dal is in the form of a soup to which onions, tomatoes and various spices may be added"
+    },
+    {
+      id: 2,
+      name: "Pierogi",
+      description: "Pierogi are filled dumplings made by wrapping unleavened dough around a savoury or sweet filling and cooking in boiling water"
+    },
+    {
+      id: 3,
+      name: "Shish kebab",
+      description: "Shish kebab is a popular meal of skewered and grilled cubes of meat."
+    },
+    {
+      id: 4,
+      name: "Dim sum",
+      description: "Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch"
     }
   ];
 
@@ -24213,11 +24246,12 @@
 
   // src/components/Letter2.jsx
   var import_react36 = __toESM(require_react());
-  function Letter2({ letter, onToggle }) {
-    return /* @__PURE__ */ import_react36.default.createElement("li", null, /* @__PURE__ */ import_react36.default.createElement("label", null, /* @__PURE__ */ import_react36.default.createElement(
+  function Letter2({ letter, onToggle, isSelected }) {
+    return /* @__PURE__ */ import_react36.default.createElement("li", { className: isSelected ? "selected" : "" }, /* @__PURE__ */ import_react36.default.createElement("label", null, /* @__PURE__ */ import_react36.default.createElement(
       "input",
       {
         type: "checkbox",
+        checked: isSelected,
         onChange: () => {
           onToggle(letter.id);
         }
@@ -24227,29 +24261,69 @@
 
   // src/components/StateStructure4.jsx
   function MailClient2() {
-    const [selectedId, setSelectedId] = (0, import_react38.useState)(null);
+    const [selectedIds, setSelectedIds] = (0, import_react38.useState)(/* @__PURE__ */ new Set());
+    const selectedCount = selectedIds.size;
     function handleToggle(toggledId) {
-      setSelectedId(toggledId);
+      const nextIds = new Set(selectedIds);
+      if (nextIds.has(toggledId)) {
+        nextIds.delete(toggledId);
+      } else {
+        nextIds.add(toggledId);
+      }
+      setSelectedIds(nextIds);
     }
     return /* @__PURE__ */ import_react37.default.createElement(import_react37.default.Fragment, null, /* @__PURE__ */ import_react37.default.createElement(Title, null, "state \u69CB\u9020\u306E\u9078\u629E\uFF08\u8907\u6570\u9078\u629E\u3092\u5B9F\u88C5\uFF09"), /* @__PURE__ */ import_react37.default.createElement(ItemBox, null, /* @__PURE__ */ import_react37.default.createElement("h2", null, "Inbox"), /* @__PURE__ */ import_react37.default.createElement("ul", null, letters.map((letter) => /* @__PURE__ */ import_react37.default.createElement(
       Letter2,
       {
         key: letter.id,
         letter,
+        isSelected: selectedIds.has(letter.id),
         onToggle: handleToggle
       }
-    )), /* @__PURE__ */ import_react37.default.createElement("hr", null), /* @__PURE__ */ import_react37.default.createElement("p", null), /* @__PURE__ */ import_react37.default.createElement("p", null, /* @__PURE__ */ import_react37.default.createElement("b", null, "You selected ", selectedId, " id letters")))));
+    )), /* @__PURE__ */ import_react37.default.createElement("hr", null), /* @__PURE__ */ import_react37.default.createElement("p", null, /* @__PURE__ */ import_react37.default.createElement("b", null, "You selected ", selectedCount, " letters")))));
+  }
+
+  // src/components/SharingState1.jsx
+  var import_react39 = __toESM(require_react());
+  var import_react40 = __toESM(require_react());
+  function SyncedInputs() {
+    const [text, setText] = (0, import_react40.useState)("");
+    function handleChange(e) {
+      setText(e.target.value);
+    }
+    return /* @__PURE__ */ import_react39.default.createElement(import_react39.default.Fragment, null, /* @__PURE__ */ import_react39.default.createElement(Title, null, "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8\u9593\u3067 state \u3092\u5171\u6709\u3059\u308B\uFF08\u5165\u529B\u6B04\u306E\u540C\u671F\uFF09 "), /* @__PURE__ */ import_react39.default.createElement(ItemBox, null, /* @__PURE__ */ import_react39.default.createElement(Input, { label: "First input", value: text, onChange: handleChange }), /* @__PURE__ */ import_react39.default.createElement(Input, { label: "Second input", value: text, onChange: handleChange })));
+  }
+  function Input({ label, value, onChange }) {
+    return /* @__PURE__ */ import_react39.default.createElement("label", null, label, " ", /* @__PURE__ */ import_react39.default.createElement("input", { value, onChange }));
+  }
+
+  // src/components/SharingState2.jsx
+  var import_react41 = __toESM(require_react());
+  var import_react42 = __toESM(require_react());
+  function FilterableList() {
+    const [query, setQuery] = (0, import_react42.useState)("");
+    const results = filterItems(foods, query);
+    function handleChange(e) {
+      setQuery(e.target.value);
+    }
+    return /* @__PURE__ */ import_react41.default.createElement(import_react41.default.Fragment, null, /* @__PURE__ */ import_react41.default.createElement(Title, null, "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8\u9593\u3067 state \u3092\u5171\u6709\u3059\u308B\uFF08\u30EA\u30B9\u30C8\u306E\u30D5\u30A3\u30EB\u30BF\u30EA\u30F3\u30B0\uFF09 "), /* @__PURE__ */ import_react41.default.createElement(ItemBox, null, /* @__PURE__ */ import_react41.default.createElement(SearchBar, { query, handleChange }), /* @__PURE__ */ import_react41.default.createElement("hr", null), /* @__PURE__ */ import_react41.default.createElement(List, { items: results })));
+  }
+  function SearchBar({ query, handleChange }) {
+    return /* @__PURE__ */ import_react41.default.createElement("label", null, "Search: ", /* @__PURE__ */ import_react41.default.createElement("input", { value: query, onChange: handleChange }));
+  }
+  function List({ items }) {
+    return /* @__PURE__ */ import_react41.default.createElement("table", null, /* @__PURE__ */ import_react41.default.createElement("tbody", null, items.map((food) => /* @__PURE__ */ import_react41.default.createElement("tr", { key: food.id }, /* @__PURE__ */ import_react41.default.createElement("td", null, food.name), /* @__PURE__ */ import_react41.default.createElement("td", null, food.description)))));
   }
 
   // src/components/App.jsx
   function App3() {
-    return /* @__PURE__ */ import_react39.default.createElement("div", { className: "container" }, /* @__PURE__ */ import_react39.default.createElement(PackingList, null), /* @__PURE__ */ import_react39.default.createElement(DrinkList, null), /* @__PURE__ */ import_react39.default.createElement(RecipeList, null), /* @__PURE__ */ import_react39.default.createElement(ColorSwitch, null), /* @__PURE__ */ import_react39.default.createElement(RequestTracker, null), /* @__PURE__ */ import_react39.default.createElement(App, null), /* @__PURE__ */ import_react39.default.createElement(Canvas, null), /* @__PURE__ */ import_react39.default.createElement(ShoppingCart, null), /* @__PURE__ */ import_react39.default.createElement(TaskApp, null), /* @__PURE__ */ import_react39.default.createElement(App2, null), /* @__PURE__ */ import_react39.default.createElement(TravelPlan, null), /* @__PURE__ */ import_react39.default.createElement(MailClient, null), /* @__PURE__ */ import_react39.default.createElement(MailClient2, null));
+    return /* @__PURE__ */ import_react43.default.createElement("div", { className: "container" }, /* @__PURE__ */ import_react43.default.createElement(PackingList, null), /* @__PURE__ */ import_react43.default.createElement(DrinkList, null), /* @__PURE__ */ import_react43.default.createElement(RecipeList, null), /* @__PURE__ */ import_react43.default.createElement(ColorSwitch, null), /* @__PURE__ */ import_react43.default.createElement(RequestTracker, null), /* @__PURE__ */ import_react43.default.createElement(App, null), /* @__PURE__ */ import_react43.default.createElement(Canvas, null), /* @__PURE__ */ import_react43.default.createElement(ShoppingCart, null), /* @__PURE__ */ import_react43.default.createElement(TaskApp, null), /* @__PURE__ */ import_react43.default.createElement(App2, null), /* @__PURE__ */ import_react43.default.createElement(TravelPlan, null), /* @__PURE__ */ import_react43.default.createElement(MailClient, null), /* @__PURE__ */ import_react43.default.createElement(MailClient2, null), /* @__PURE__ */ import_react43.default.createElement(SyncedInputs, null), /* @__PURE__ */ import_react43.default.createElement(FilterableList, null));
   }
 
   // src/index.jsx
   var root = (0, import_client.createRoot)(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ import_react40.default.createElement(import_react40.StrictMode, null, /* @__PURE__ */ import_react40.default.createElement(App3, null))
+    /* @__PURE__ */ import_react44.default.createElement(import_react44.StrictMode, null, /* @__PURE__ */ import_react44.default.createElement(App3, null))
   );
 })();
 /*! Bundled license information:
