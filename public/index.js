@@ -1084,7 +1084,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState17(initialState) {
+          function useState24(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1886,7 +1886,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState17;
+          exports.useState = useState24;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2382,9 +2382,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React29 = require_react();
+          var React37 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React29.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React37.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3989,7 +3989,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React29.Children.forEach(props.children, function(child) {
+                  React37.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12436,7 +12436,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React29.Component().refs;
+          var emptyRefsObject = new React37.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23508,11 +23508,11 @@
   });
 
   // src/index.jsx
-  var import_react44 = __toESM(require_react());
+  var import_react59 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/components/App.jsx
-  var import_react43 = __toESM(require_react());
+  var import_react58 = __toESM(require_react());
 
   // src/components/ConditinalRendering1.jsx
   var import_react3 = __toESM(require_react());
@@ -24315,15 +24315,282 @@
     return /* @__PURE__ */ import_react41.default.createElement("table", null, /* @__PURE__ */ import_react41.default.createElement("tbody", null, items.map((food) => /* @__PURE__ */ import_react41.default.createElement("tr", { key: food.id }, /* @__PURE__ */ import_react41.default.createElement("td", null, food.name), /* @__PURE__ */ import_react41.default.createElement("td", null, food.description)))));
   }
 
-  // src/components/App.jsx
+  // src/components/PreserveResetState1.jsx
+  var import_react43 = __toESM(require_react());
+  var import_react44 = __toESM(require_react());
   function App3() {
-    return /* @__PURE__ */ import_react43.default.createElement("div", { className: "container" }, /* @__PURE__ */ import_react43.default.createElement(PackingList, null), /* @__PURE__ */ import_react43.default.createElement(DrinkList, null), /* @__PURE__ */ import_react43.default.createElement(RecipeList, null), /* @__PURE__ */ import_react43.default.createElement(ColorSwitch, null), /* @__PURE__ */ import_react43.default.createElement(RequestTracker, null), /* @__PURE__ */ import_react43.default.createElement(App, null), /* @__PURE__ */ import_react43.default.createElement(Canvas, null), /* @__PURE__ */ import_react43.default.createElement(ShoppingCart, null), /* @__PURE__ */ import_react43.default.createElement(TaskApp, null), /* @__PURE__ */ import_react43.default.createElement(App2, null), /* @__PURE__ */ import_react43.default.createElement(TravelPlan, null), /* @__PURE__ */ import_react43.default.createElement(MailClient, null), /* @__PURE__ */ import_react43.default.createElement(MailClient2, null), /* @__PURE__ */ import_react43.default.createElement(SyncedInputs, null), /* @__PURE__ */ import_react43.default.createElement(FilterableList, null));
+    const [showHint, setShowHint] = (0, import_react44.useState)(false);
+    return /* @__PURE__ */ import_react43.default.createElement(import_react43.default.Fragment, null, /* @__PURE__ */ import_react43.default.createElement(Title, null, "state \u306E\u4FDD\u6301\u3068\u30EA\u30BB\u30C3\u30C8\uFF08\u5165\u529B\u30C6\u30AD\u30B9\u30C8\u306E\u6D88\u5931\u3092\u4FEE\u6B63)"), /* @__PURE__ */ import_react43.default.createElement(ItemBox, null, showHint && /* @__PURE__ */ import_react43.default.createElement("p", null, /* @__PURE__ */ import_react43.default.createElement("i", null, "Hint: Your favorite city?")), /* @__PURE__ */ import_react43.default.createElement(Form, null), /* @__PURE__ */ import_react43.default.createElement(
+      "button",
+      {
+        onClick: () => {
+          setShowHint(!showHint);
+        }
+      },
+      "Hide hint"
+    )));
+  }
+  function Form() {
+    const [text, setText] = (0, import_react44.useState)("");
+    const textareaStyle = {
+      display: "block",
+      margin: "10px 0"
+    };
+    return /* @__PURE__ */ import_react43.default.createElement(
+      "textarea",
+      {
+        style: textareaStyle,
+        value: text,
+        onChange: (e) => setText(e.target.value)
+      }
+    );
+  }
+
+  // src/components/PreserveResetState2.jsx
+  var import_react45 = __toESM(require_react());
+  var import_react46 = __toESM(require_react());
+  function App4() {
+    const [reverse, setReverse] = (0, import_react46.useState)(false);
+    let checkbox = /* @__PURE__ */ import_react45.default.createElement("label", null, /* @__PURE__ */ import_react45.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        checked: reverse,
+        onChange: (e) => setReverse(e.target.checked)
+      }
+    ), "Reverse order");
+    return /* @__PURE__ */ import_react45.default.createElement(import_react45.default.Fragment, null, /* @__PURE__ */ import_react45.default.createElement(Title, null, "state \u306E\u4FDD\u6301\u3068\u30EA\u30BB\u30C3\u30C8 (2\u3064\u306E\u30D5\u30A3\u30FC\u30EB\u30C9\u3092\u5165\u308C\u66FF\u3048)"), /* @__PURE__ */ import_react45.default.createElement(ItemBox, null, reverse ? /* @__PURE__ */ import_react45.default.createElement(import_react45.default.Fragment, null, /* @__PURE__ */ import_react45.default.createElement(Field, { key: "lastName", label: "Last name" }), /* @__PURE__ */ import_react45.default.createElement(Field, { key: "firstName", label: "First name" })) : /* @__PURE__ */ import_react45.default.createElement(import_react45.default.Fragment, null, /* @__PURE__ */ import_react45.default.createElement(Field, { key: "firstName", label: "First name" }), /* @__PURE__ */ import_react45.default.createElement(Field, { key: "lastName", label: "Last name" })), checkbox));
+  }
+  function Field({ label }) {
+    const [text, setText] = (0, import_react46.useState)("");
+    return /* @__PURE__ */ import_react45.default.createElement("label", null, label, ":", " ", /* @__PURE__ */ import_react45.default.createElement(
+      "input",
+      {
+        type: "text",
+        value: text,
+        placeholder: label,
+        onChange: (e) => setText(e.target.value)
+      }
+    ));
+  }
+
+  // src/components/PreserveResetState3.jsx
+  var import_react50 = __toESM(require_react());
+  var import_react51 = __toESM(require_react());
+
+  // src/components/ContactList.jsx
+  var import_react47 = __toESM(require_react());
+  function ContactList({ contacts: contacts2, selectedId, onSelect }) {
+    const liStyle = {
+      listStyle: "none",
+      margin: 0,
+      padding: 0,
+      display: "inline-block"
+    };
+    const ulStyle = {
+      listStyle: "none",
+      margin: 0,
+      padding: 0
+    };
+    return /* @__PURE__ */ import_react47.default.createElement("section", null, /* @__PURE__ */ import_react47.default.createElement("ul", { style: ulStyle }, contacts2.map((contact) => /* @__PURE__ */ import_react47.default.createElement("li", { key: contact.id, style: liStyle }, /* @__PURE__ */ import_react47.default.createElement(
+      "button",
+      {
+        onClick: () => {
+          onSelect(contact.id);
+        },
+        style: { padding: "10px" }
+      },
+      contact.id === selectedId ? /* @__PURE__ */ import_react47.default.createElement("b", null, contact.name) : contact.name
+    )))));
+  }
+
+  // src/components/EditContact.jsx
+  var import_react48 = __toESM(require_react());
+  var import_react49 = __toESM(require_react());
+  function EditContact({ initialData, onSave }) {
+    const [name, setName] = (0, import_react49.useState)(initialData.name);
+    const [email, setEmail] = (0, import_react49.useState)(initialData.email);
+    return /* @__PURE__ */ import_react48.default.createElement("section", null, /* @__PURE__ */ import_react48.default.createElement("label", null, "Name:", " ", /* @__PURE__ */ import_react48.default.createElement(
+      "input",
+      {
+        type: "text",
+        value: name,
+        onChange: (e) => setName(e.target.value)
+      }
+    )), /* @__PURE__ */ import_react48.default.createElement("label", null, "Email:", " ", /* @__PURE__ */ import_react48.default.createElement(
+      "input",
+      {
+        type: "email",
+        value: email,
+        onChange: (e) => setEmail(e.target.value)
+      }
+    )), /* @__PURE__ */ import_react48.default.createElement(
+      "button",
+      {
+        onClick: () => {
+          const updatedData = {
+            id: initialData.id,
+            name,
+            email
+          };
+          onSave(updatedData);
+        }
+      },
+      "Save"
+    ), /* @__PURE__ */ import_react48.default.createElement(
+      "button",
+      {
+        onClick: () => {
+          setName(initialData.name);
+          setEmail(initialData.email);
+        }
+      },
+      "Reset"
+    ));
+  }
+
+  // src/components/PreserveResetState3.jsx
+  function ContactManager() {
+    const [contacts2, setContacts] = (0, import_react51.useState)(initialContacts);
+    const [selectedId, setSelectedId] = (0, import_react51.useState)(0);
+    let selectedContact = contacts2.find((c) => c.id === selectedId);
+    function handleSave(updatedData) {
+      const nextContacts = contacts2.map((c) => {
+        if (c.id === updatedData.id) {
+          return updatedData;
+        } else {
+          return c;
+        }
+      });
+      setContacts(nextContacts);
+    }
+    return /* @__PURE__ */ import_react50.default.createElement(import_react50.default.Fragment, null, /* @__PURE__ */ import_react50.default.createElement(Title, null, "state \u306E\u4FDD\u6301\u3068\u30EA\u30BB\u30C3\u30C8\uFF08\u8A73\u7D30\u30D5\u30A9\u30FC\u30E0\u3092\u30EA\u30BB\u30C3\u30C8)"), /* @__PURE__ */ import_react50.default.createElement(ItemBox, null, /* @__PURE__ */ import_react50.default.createElement(
+      ContactList,
+      {
+        contacts: contacts2,
+        selectedId,
+        onSelect: (id) => setSelectedId(id)
+      }
+    ), /* @__PURE__ */ import_react50.default.createElement("hr", null), /* @__PURE__ */ import_react50.default.createElement(
+      EditContact,
+      {
+        key: selectedId,
+        initialData: selectedContact,
+        onSave: handleSave
+      }
+    )));
+  }
+  var initialContacts = [
+    { id: 0, name: "Taylor", email: "taylor@mail.com" },
+    { id: 1, name: "Alice", email: "alice@mail.com" },
+    { id: 2, name: "Bob", email: "bob@mail.com" }
+  ];
+
+  // src/components/PreserveResetState4.jsx
+  var import_react52 = __toESM(require_react());
+  var import_react53 = __toESM(require_react());
+  var imgStyle = {
+    width: "150px",
+    height: "150px"
+  };
+  function Gallery() {
+    const [index, setIndex] = (0, import_react53.useState)(0);
+    const hasNext = index < images.length - 1;
+    function handleClick() {
+      if (hasNext) {
+        setIndex(index + 1);
+      } else {
+        setIndex(0);
+      }
+    }
+    let image = images[index];
+    return /* @__PURE__ */ import_react52.default.createElement(import_react52.default.Fragment, null, /* @__PURE__ */ import_react52.default.createElement(Title, null, "state \u306E\u4FDD\u6301\u3068\u30EA\u30BB\u30C3\u30C8\uFF08\u8AAD\u307F\u8FBC\u307F\u4E2D\u306B\u753B\u50CF\u3092\u30AF\u30EA\u30A2)"), /* @__PURE__ */ import_react52.default.createElement(ItemBox, null, /* @__PURE__ */ import_react52.default.createElement("button", { onClick: handleClick }, "Next"), /* @__PURE__ */ import_react52.default.createElement("h3", null, "Image ", index + 1, " of ", images.length), /* @__PURE__ */ import_react52.default.createElement("img", { key: image.src, src: image.src, style: imgStyle }), /* @__PURE__ */ import_react52.default.createElement("p", null, image.place)));
+  }
+  var images = [
+    {
+      place: "Penang, Malaysia",
+      src: "https://i.imgur.com/FJeJR8M.jpg"
+    },
+    {
+      place: "Lisbon, Portugal",
+      src: "https://i.imgur.com/dB2LRbj.jpg"
+    },
+    {
+      place: "Bilbao, Spain",
+      src: "https://i.imgur.com/z08o2TS.jpg"
+    },
+    {
+      place: "Valpara\xEDso, Chile",
+      src: "https://i.imgur.com/Y3utgTi.jpg"
+    },
+    {
+      place: "Schwyz, Switzerland",
+      src: "https://i.imgur.com/JBbMpWY.jpg"
+    },
+    {
+      place: "Prague, Czechia",
+      src: "https://i.imgur.com/QwUKKmF.jpg"
+    },
+    {
+      place: "Ljubljana, Slovenia",
+      src: "https://i.imgur.com/3aIiwfm.jpg"
+    }
+  ];
+
+  // src/components/PreserveResetState5.jsx
+  var import_react56 = __toESM(require_react());
+  var import_react57 = __toESM(require_react());
+
+  // src/components/Contact.jsx
+  var import_react54 = __toESM(require_react());
+  var import_react55 = __toESM(require_react());
+  function Contact({ contact }) {
+    const [expanded, setExpanded] = (0, import_react55.useState)(false);
+    return /* @__PURE__ */ import_react54.default.createElement(import_react54.default.Fragment, null, /* @__PURE__ */ import_react54.default.createElement("p", null, /* @__PURE__ */ import_react54.default.createElement("b", null, contact.name)), expanded && /* @__PURE__ */ import_react54.default.createElement("p", null, /* @__PURE__ */ import_react54.default.createElement("i", null, contact.email)), /* @__PURE__ */ import_react54.default.createElement(
+      "button",
+      {
+        onClick: () => {
+          setExpanded(!expanded);
+        }
+      },
+      expanded ? "Hide" : "Show",
+      " email"
+    ));
+  }
+
+  // src/components/PreserveResetState5.jsx
+  function ContactList2() {
+    const [reverse, setReverse] = (0, import_react57.useState)(false);
+    const displayedContacts = [...contacts];
+    if (reverse) {
+      displayedContacts.reverse();
+    }
+    return /* @__PURE__ */ import_react56.default.createElement(import_react56.default.Fragment, null, /* @__PURE__ */ import_react56.default.createElement(Title, null, "state \u306E\u4FDD\u6301\u3068\u30EA\u30BB\u30C3\u30C8\uFF08\u30EA\u30B9\u30C8\u5185\u306E state \u4F4D\u7F6E\u30BA\u30EC\u3092\u4FEE\u6B63)"), /* @__PURE__ */ import_react56.default.createElement(ItemBox, null, /* @__PURE__ */ import_react56.default.createElement("label", null, /* @__PURE__ */ import_react56.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        value: reverse,
+        onChange: (e) => {
+          setReverse(e.target.checked);
+        }
+      }
+    ), " ", "Show in reverse order"), /* @__PURE__ */ import_react56.default.createElement("ul", null, displayedContacts.map((contact, i) => /* @__PURE__ */ import_react56.default.createElement("li", { key: contact.name }, /* @__PURE__ */ import_react56.default.createElement(Contact, { contact }))))));
+  }
+  var contacts = [
+    { id: 0, name: "Alice", email: "alice@mail.com" },
+    { id: 1, name: "Bob", email: "bob@mail.com" },
+    { id: 2, name: "Taylor", email: "taylor@mail.com" }
+  ];
+
+  // src/components/App.jsx
+  function App5() {
+    return /* @__PURE__ */ import_react58.default.createElement("div", { className: "container" }, /* @__PURE__ */ import_react58.default.createElement(PackingList, null), /* @__PURE__ */ import_react58.default.createElement(DrinkList, null), /* @__PURE__ */ import_react58.default.createElement(RecipeList, null), /* @__PURE__ */ import_react58.default.createElement(ColorSwitch, null), /* @__PURE__ */ import_react58.default.createElement(RequestTracker, null), /* @__PURE__ */ import_react58.default.createElement(App, null), /* @__PURE__ */ import_react58.default.createElement(Canvas, null), /* @__PURE__ */ import_react58.default.createElement(ShoppingCart, null), /* @__PURE__ */ import_react58.default.createElement(TaskApp, null), /* @__PURE__ */ import_react58.default.createElement(App2, null), /* @__PURE__ */ import_react58.default.createElement(TravelPlan, null), /* @__PURE__ */ import_react58.default.createElement(MailClient, null), /* @__PURE__ */ import_react58.default.createElement(MailClient2, null), /* @__PURE__ */ import_react58.default.createElement(SyncedInputs, null), /* @__PURE__ */ import_react58.default.createElement(FilterableList, null), /* @__PURE__ */ import_react58.default.createElement(App3, null), /* @__PURE__ */ import_react58.default.createElement(App4, null), /* @__PURE__ */ import_react58.default.createElement(ContactManager, null), /* @__PURE__ */ import_react58.default.createElement(Gallery, null), /* @__PURE__ */ import_react58.default.createElement(ContactList2, null));
   }
 
   // src/index.jsx
   var root = (0, import_client.createRoot)(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ import_react44.default.createElement(import_react44.StrictMode, null, /* @__PURE__ */ import_react44.default.createElement(App3, null))
+    /* @__PURE__ */ import_react59.default.createElement(import_react59.StrictMode, null, /* @__PURE__ */ import_react59.default.createElement(App5, null))
   );
 })();
 /*! Bundled license information:

@@ -14,6 +14,11 @@ import StateStructure3 from "./StateStructure3";
 import StateStructure4 from "./StateStructure4";
 import SharingState1 from "./SharingState1";
 import SharingState2 from "./SharingState2";
+import PreserveResetState1 from "./PreserveResetState1";
+import PreserveResetState2 from "./PreserveResetState2";
+import PreserveResetState3 from "./PreserveResetState3";
+import PreserveResetState4 from "./PreserveResetState4";
+import PreserveResetState5 from "./PreserveResetState5";
 
 export default function App() {
   return (
@@ -48,6 +53,16 @@ export default function App() {
       <SharingState1 />
       {/* コンポーネント間で state を共有する（リストのフィルタリング）*/}
       <SharingState2 />
+      {/* state の保持とリセット（入力テキストの消失を修正 ）*/}
+      <PreserveResetState1 />
+      {/* state の保持とリセット（2 つのフィールドを入れ替え）*/}
+      <PreserveResetState2 />
+      {/* state の保持とリセット（詳細フォームをリセット) */}
+      <PreserveResetState3 />
+      {/* state の保持とリセット（読み込み中に画像をクリア) */}
+      <PreserveResetState4 />
+      {/* state の保持とリセット（リスト内の state 位置ズレを修正) */}
+      <PreserveResetState5 />
     </div>
   );
 }
